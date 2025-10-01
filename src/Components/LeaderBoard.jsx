@@ -11,7 +11,10 @@ const sampleData = [
 
 export default function Leaderboard() {
   return (
-    <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow p-6">
+    <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow p-6 relative">
+      <div className="w-full h-full absolute z-[999] backdrop-blur-xl flex items-center justify-center">
+        <span className="text-black text-xl">Leaderboard will be available soon.</span>
+      </div>
       {/* Title */}
       <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
         <Crown className="w-6 h-6 text-yellow-500" />

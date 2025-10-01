@@ -1,22 +1,73 @@
 // components/Profile.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-  const [name, setName] = useState("Otabek Burhonov");
-  const [email, setEmail] = useState("otabek@example.com");
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modal, setModal] = useState(null); // "logout" | "delete" | null
+  const [loading, setLoading] = useState(true);
+  const user_from_loc = localStorage.getItem("user"); // string
+  const userObj = JSON.parse(user_from_loc); // endi obyekt
+  const userId = userObj.userId; // "2"
 
+
+  // GET user data by ID
+  useEffect(() => {
+    if (!userId) {
+      navigate("/auth");
+      return;
+    }
+    axios
+      .get(`http://localhost:4000/user/${userId}`)
+      .then((res) => {
+        setName(res.data.full_name);
+        setEmail(res.data.email);
+      })
+      .catch((err) => console.error("❌ Error fetching user:", err))
+      .finally(() => setLoading(false));
+  }, [userId, navigate]);
+
+  // Update profile
   const handleUpdate = (e) => {
     e.preventDefault();
-    alert("Profile updated ✅");
+    axios
+      .put("http://localhost:4000/user", { id: userId, full_name:name, email, password })
+      .then(() => alert("Profile updated ✅"))
+      .catch((err) => console.error("❌ Error updating profile:", err));
   };
+
+  // Delete account
+  const handleDelete = () => {
+    axios
+      .delete(`http://localhost:4000/user/${userId}`)
+      .then(() => {
+        localStorage.removeItem("id");
+        alert("Account deleted ❌");
+        navigate("/auth");
+      })
+      .catch((err) => console.error("❌ Error deleting account:", err));
+  };
+
+  // Log out
+  const handleLogout = () => {
+    axios
+      .post("http://localhost:4000/auth/logout", { id: userId })
+      .finally(() => {
+        localStorage.removeItem("id");
+        navigate("/auth");
+      });
+  };
+
+  if (loading) return <div className="p-6">Loading...</div>;
 
   return (
     <div className="max-w-2xl mx-auto bg-white shadow rounded-2xl p-6">
       <h2 className="text-2xl font-bold mb-4">Profile Settings</h2>
 
-      {/* Form */}
       <form onSubmit={handleUpdate} className="space-y-4">
         <div>
           <label className="block text-sm font-medium mb-1">Name</label>
@@ -97,17 +148,12 @@ export default function Profile() {
               <button
                 onClick={() => {
                   setModal(null);
-                  alert(
-                    modal === "logout"
-                      ? "Logged out ✅"
-                      : "Account deleted ❌"
-                  );
+                  modal === "logout" ? handleLogout() : handleDelete();
                 }}
-                className={`px-4 py-2 rounded-lg text-white ${
-                  modal === "logout"
+                className={`px-4 py-2 rounded-lg text-white ${modal === "logout"
                     ? "bg-indigo-600 hover:bg-indigo-700"
                     : "bg-red-600 hover:bg-red-700"
-                }`}
+                  }`}
               >
                 {modal === "logout" ? "Log Out" : "Delete"}
               </button>

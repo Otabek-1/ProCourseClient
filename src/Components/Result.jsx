@@ -28,12 +28,12 @@ export default function Result() {
           >
             Bosh sahifaga qaytish
           </button>
-          <button
+          {/* <button
             onClick={() => navigate("/test")}
             className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
           >
             Testni qayta ishlash
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

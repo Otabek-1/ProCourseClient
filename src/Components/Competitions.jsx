@@ -31,20 +31,20 @@ export default function Competitions() {
     ];
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 flex justify-center">
             {/* Active competition */}
-            <div className="relative w-full h-60 rounded-2xl overflow-hidden shadow-lg">
-                {/* Background image */}
+            {/* <div className="relative w-full h-60 rounded-2xl overflow-hidden shadow-lg">
+               
                 <img
                     src={activeCompetition.image}
                     alt={activeCompetition.name}
                     className="absolute inset-0 w-full h-full object-cover"
                 />
 
-                {/* Overlay (qoraroq fon uchun) */}
+              
                 <div className="absolute inset-0 bg-black/40"></div>
 
-                {/* Content */}
+                
                 <div className="relative z-10 flex flex-col justify-end h-full p-4 text-white">
                     <h2 className="text-xl font-bold flex items-center gap-2">
                         <Trophy className="w-6 h-6 text-yellow-400" />
@@ -56,10 +56,10 @@ export default function Competitions() {
                         {activeCompetition.startTime}
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* Past competitions */}
-            <div>
+            {/* <div>
                 <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                     <Trophy className="text-yellow-500" /> Past Competitions
                 </h3>
@@ -79,7 +79,9 @@ export default function Competitions() {
                         </div>
                     ))}
                 </div>
-            </div>
+            </div> */}
+
+            <span className="text-gray-500 text-2xl">Competitions will be available soon.</span>
         </div>
     );
 }

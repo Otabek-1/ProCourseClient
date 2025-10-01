@@ -7,6 +7,8 @@ import Auth from './Auth.jsx'
 import HomeUser from './Home.jsx'
 import TestInterface from './Components/TestInterface.jsx'
 import Result from './Components/Result.jsx'
+import AdminDashboard from './Components/AdminDashboard.jsx'
+import AdminUsers from './Components/AdminUsers.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -14,8 +16,9 @@ createRoot(document.getElementById('root')).render(
       <Route path='/' element={<App />}/>
       <Route path='/auth' element={<Auth />}/>
       <Route path='/home' element={<HomeUser />}/>
-      <Route path='/test/:id' element={<TestInterface />}/>
+      <Route path='/test' element={<TestInterface />}/>
       <Route path="/result" element={<Result />} />
+      <Route path='/admin' element={<AdminDashboard />}/>
     </Routes>
   </BrowserRouter>
 )
