@@ -33,7 +33,7 @@ export default function Auth() {
           return;
         }
 
-        const res = await axios.post("http://localhost:4000/register", {
+        const res = await axios.post("http://otabek.alwaysdata.net/register", {
           full_name: form.full_name,
           email: form.email,
           password: form.password,
@@ -42,7 +42,7 @@ export default function Auth() {
         setMessage("✅ Registration successful! Now login.");
         setMode("login");
       } else {
-        const res = await axios.post("http://localhost:4000/login", {
+        const res = await axios.post("http://otabek.alwaysdata.net/login", {
           email: form.email,
           password: form.password,
         });
@@ -57,7 +57,7 @@ export default function Auth() {
         const userId = res.data.userId;
         // console.log(userId);
         
-        const userRes = await axios.get(`http://localhost:4000/user/${userId}`);
+        const userRes = await axios.get(`http://otabek.alwaysdata.net/user/${userId}`);
         
         if (userRes.data.role === "user") {
           navigate("/home");

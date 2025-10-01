@@ -22,7 +22,7 @@ export default function Profile() {
       return;
     }
     axios
-      .get(`http://localhost:4000/user/${userId}`)
+      .get(`http://otabek.alwaysdata.net/user/${userId}`)
       .then((res) => {
         setName(res.data.full_name);
         setEmail(res.data.email);
@@ -35,7 +35,7 @@ export default function Profile() {
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .put("http://localhost:4000/user", { id: userId, full_name:name, email, password })
+      .put("http://otabek.alwaysdata.net/user", { id: userId, full_name:name, email, password })
       .then(() => alert("Profile updated ✅"))
       .catch((err) => console.error("❌ Error updating profile:", err));
   };
@@ -43,7 +43,7 @@ export default function Profile() {
   // Delete account
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:4000/user/${userId}`)
+      .delete(`http://otabek.alwaysdata.net/user/${userId}`)
       .then(() => {
         localStorage.removeItem("id");
         alert("Account deleted ❌");
@@ -55,7 +55,7 @@ export default function Profile() {
   // Log out
   const handleLogout = () => {
     axios
-      .post("http://localhost:4000/auth/logout", { id: userId })
+      .post("http://otabek.alwaysdata.net/auth/logout", { id: userId })
       .finally(() => {
         localStorage.removeItem("id");
         navigate("/auth");
