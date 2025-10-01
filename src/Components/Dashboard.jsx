@@ -10,7 +10,7 @@ export default function Dashboard() {
 
     const startTest = async () => {
         try {
-            const res = await axios.post("http://otabek.alwaysdata.net/tests", {
+            const res = await axios.post("https://otabek.alwaysdata.net/tests", {
                 limit: questions,
                 category: "grammar",
             });

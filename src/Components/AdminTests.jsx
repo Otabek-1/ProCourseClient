@@ -60,7 +60,7 @@ export default function AdminTests() {
     };
 
     try {
-      await axios.put("http://otabek.alwaysdata.net/add-test", newTest);
+      await axios.put("https://otabek.alwaysdata.net/add-test", newTest);
       alert("Test saqlandi! ✅");
       handleClear();
       setOpenModal(false);

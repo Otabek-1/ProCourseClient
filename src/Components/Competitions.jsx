@@ -6,7 +6,7 @@ export default function Competitions() {
         name: "Grammar Challenge",
         description: "Test your English grammar skills and compete with others!",
         startTime: "2025-10-01 18:00",
-        image: "https://picsum.photos/1000/500",
+        image: "httpss://picsum.photos/1000/500",
     };
 
     const pastCompetitions = [

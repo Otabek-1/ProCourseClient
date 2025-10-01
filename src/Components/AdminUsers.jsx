@@ -11,7 +11,7 @@ export default function AdminUsers() {
   // Foydalanuvchilarni olish
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://otabek.alwaysdata.net/users");
+      const res = await axios.get("https://otabek.alwaysdata.net/users");
       setUsers(res.data);
     } catch (err) {
       console.error("❌ Error fetching users:", err);
@@ -34,7 +34,7 @@ export default function AdminUsers() {
   // Delete user
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://otabek.alwaysdata.net/user/${id}`);
+      await axios.delete(`https://otabek.alwaysdata.net/user/${id}`);
       setUsers(users.filter((u) => u.id !== id));
       setDeleteUser(null);
     } catch (err) {
